@@ -2,17 +2,24 @@ package dierenpark.zones;
 
 import dierenpark.personen.Personeelsleed;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Activiteit {
+public class Activiteit implements Serializable {
 
     private String categorie, omschrijving;
     private Personeelsleed mederwerker;
     private ArrayList<Personeelsleed> lijstMederwerkers = new ArrayList<>();
+    private static int activiteitteller = 0;
+    private String activiteitsTel;
+
 
     public Activiteit(String categorie, String omschrijving) {
         this.categorie = categorie;
         this.omschrijving = omschrijving;
+        this.activiteitsTel = "Activiteit" + activiteitteller;
+        activiteitteller++;
+
     }
 
     public String getCategorie() {
@@ -47,9 +54,10 @@ public class Activiteit {
 
     @Override
     public String toString() {
-        return "Activiteit{" +
+        return this.activiteitsTel + "{" +
                 " categorie = " + categorie +
                 ", omschrijving = " + omschrijving +
+                ", lijstMederwerkers = " + lijstMederwerkers +
                 '}';
     }
 }

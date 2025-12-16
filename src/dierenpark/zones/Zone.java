@@ -3,9 +3,10 @@ package dierenpark.zones;
 import dierenpark.personen.Bezoeker;
 import dierenpark.personen.Personeelsleed;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Zone {
+public class Zone implements Serializable {
 
 
     private Bezoeker bezoeker;
@@ -13,6 +14,8 @@ public class Zone {
     private String naamZone;
     private int maxCapaciteit;
     private Bezoeker.LeeftijdsCategorie leeftijd;
+    private static int zoneteller = 0;
+    private String zoneTel;
 
     private ArrayList<Activiteit> lijstActiviteit = new ArrayList<>();
     private ArrayList<Bezoeker> lijstBezoekers = new ArrayList<>();
@@ -22,6 +25,16 @@ public class Zone {
     public Zone(String naamZone, int maxCapaciteit) {
         this.naamZone = naamZone;
         this.maxCapaciteit = maxCapaciteit;
+        this.zoneTel = "Zone" + zoneteller;
+        zoneteller++;
+    }
+
+    public String getLijstBezoekers() {
+        return ""+lijstBezoekers;
+    }
+
+    public String getNaamZone() {
+        return naamZone;
     }
 
     public void addToegestaanLeeftijd(Bezoeker.LeeftijdsCategorie leeftijd){
@@ -58,26 +71,17 @@ public class Zone {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return this.zoneTel + "{" +
+                " activiteit = " + activiteit +
+                ", naamZone = " + naamZone +
+                ", maxCapaciteit = " + maxCapaciteit +
+                ", toegestaanLeeftijd = " + toegestaanLeeftijd +
+                ", lijstBezoekers = " + lijstBezoekers +
+                ", lijstActiviteit = " + lijstActiviteit +
+                '}';
+    }
 
 
 }

@@ -1,11 +1,14 @@
 package dierenpark.personen;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Bezoeker extends Persoon{
+public class Bezoeker extends Persoon implements Serializable {
 
     private LeeftijdsCategorie leeftijd;
     private double toegangsPrijs;
+    private static int bezoekerteller= 0;
+    private String bezoekerTel;
 
 
     public enum LeeftijdsCategorie{
@@ -15,6 +18,7 @@ public class Bezoeker extends Persoon{
     public Bezoeker(String voornaam, String achternaam, LocalDate geboortedatum, Adres adres, LeeftijdsCategorie leeftijd) {
         super(voornaam, achternaam, geboortedatum, adres);
         this.leeftijd = leeftijd;
+        this.bezoekerTel = "Bezoeker" + bezoekerteller;
 
         if(leeftijd == LeeftijdsCategorie.KIND){
             this.toegangsPrijs = 5.00;
@@ -23,6 +27,8 @@ public class Bezoeker extends Persoon{
         } else if (leeftijd == LeeftijdsCategorie.VOLWASSEN) {
             this.toegangsPrijs = 15.00;
         }
+
+        bezoekerteller++;
     }
 
     public LeeftijdsCategorie getLeeftijd() {
@@ -35,7 +41,7 @@ public class Bezoeker extends Persoon{
 
     @Override
     public String toString() {
-        return "Bezoeker{" + super.toString() +
+        return this.bezoekerTel + "{" + super.toString() +
                 " leeftijd = " + this.leeftijd + ", toegangsprijs = " + this.toegangsPrijs + " euro"+
                 "} ";
     }
