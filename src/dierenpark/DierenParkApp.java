@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -37,10 +38,14 @@ public class DierenParkApp implements Serializable {
     Activiteit activiteit;
     Zone zone;
     Bezoeker bezoeker;
+    public static final String ROOD = "\u001B[31m";
+    public static final String GROEN = "\u001B[32m";
+    public static final String GEEL = "\u001B[33m";
+    public static final String RESET = "\u001B[0m";
 
 
     public void start() {
-        System.out.println("Welkom op de DierenPark Manager App.");
+        System.out.println(GEEL + "Welkom op de DierenPark Manager App." + RESET);
 
         int keuzeMenu;
 
@@ -100,46 +105,57 @@ public class DierenParkApp implements Serializable {
 
     private void maakPersoneelsleed(){
 
-        System.out.print("Voornaam:");
-        String voornaam = sc.nextLine();
-        System.out.print("Achternaam:");
-        String achternaam = sc.nextLine();
-        System.out.print("Geboortedatum (Formaat: YYYY-MM-DD):");
-        LocalDate geboortedatum = LocalDate.parse(sc.nextLine());
-        System.out.print("Straatnaam:");
-        String straatNaam = sc.nextLine();
-        System.out.print("Huisnummer:");
-        int huisNummer = Integer.parseInt(sc.nextLine());
-        System.out.println("Bus:");
-        int bus = Integer.parseInt(sc.nextLine());
-        System.out.println("Postcode:");
-        int postCode = Integer.parseInt(sc.nextLine());
-        System.out.println("Woonplaat:");
-        String woonPlaats = sc.nextLine();
-        System.out.println("Type medewerker (keuze tussen: GIDS, POETSPLOEG, VERZORGER");
-        Personeelsleed.TypePersoneel typeRol = Personeelsleed.TypePersoneel.valueOf(sc.nextLine());
+        try{
+            System.out.print("Voornaam: ");
+            String voornaam = sc.nextLine();
+            System.out.print("Achternaam: ");
+            String achternaam = sc.nextLine();
+            System.out.print("Geboortedatum (Formaat: YYYY-MM-DD): ");
+            LocalDate geboortedatum = LocalDate.parse(sc.nextLine());
+            System.out.print("Straatnaam: ");
+            String straatNaam = sc.nextLine();
+            System.out.print("Huisnummer: ");
+            int huisNummer = Integer.parseInt(sc.nextLine());
+            System.out.print("Bus: ");
+            int bus = Integer.parseInt(sc.nextLine());
+            System.out.print("Postcode: ");
+            int postCode = Integer.parseInt(sc.nextLine());
+            System.out.print("Woonplaats: ");
+            String woonPlaats = sc.nextLine();
+            System.out.print("Type medewerker (keuze tussen: GIDS, POETSPLOEG, VERZORGER): ");
+            Personeelsleed.TypePersoneel typeRol = Personeelsleed.TypePersoneel.valueOf(sc.nextLine());
 
-        medewerker = new Personeelsleed(voornaam, achternaam, geboortedatum, new Adres(straatNaam, huisNummer, bus, postCode, woonPlaats), typeRol);
-        personeelsleedLijst.add(medewerker);
+            medewerker = new Personeelsleed(voornaam, achternaam, geboortedatum, new Adres(straatNaam, huisNummer, bus, postCode, woonPlaats), typeRol);
+            personeelsleedLijst.add(medewerker);
+            System.out.println("Personeelsleed succesvol toegevoegd.\n");
+        }catch (NumberFormatException e) {
+            System.err.println("Foutieve invoer: huisnummer, bus of postcode moet een getal zijn.");
+        } catch (DateTimeParseException e) {
+            System.err.println("Foutieve invoer: geboortedatum moet in formaat YYYY-MM-DD zijn.");
+        } catch (IllegalArgumentException e) {
+            System.err.println("Foutieve invoer: leeftijdscategorie ongeldig (SENIOR, VOLWASSEN, KIND).");
+        }
+
 
     }
 
     private void maakActiviteit(){
-        System.out.println("Categorie van de activiteit:");
+        System.out.print("Categorie van de activiteit: ");
         String categorie = sc.nextLine();
 
-        System.out.println("Omschrijving van de activiteit:");
+        System.out.print("Omschrijving van de activiteit: ");
         String omschrijving = sc.nextLine();
 
         activiteit = new Activiteit(categorie, omschrijving);
         activiteitLijst.add(activiteit);
+        System.out.println("Activiteit succesvol toegevoegd.\n");
     }
 
     private void maakZone(){
-        System.out.println("Naam van de zone:");
+        System.out.print("Naam van de zone: ");
         String naamZone = sc.nextLine();
 
-        System.out.println("Max capaciteit van de zone:");
+        System.out.print("Max capaciteit van de zone: ");
         int maxCapaciteit = Integer.parseInt(sc.nextLine());
 
         zone = new Zone(naamZone, maxCapaciteit);
@@ -149,7 +165,7 @@ public class DierenParkApp implements Serializable {
         Bezoeker.LeeftijdsCategorie leeftijd;
 
         do{
-            System.out.println("Welke leeftijdscategorieën zijn toegestaan in deze zone? (keuze tussen: KIND, VOLWASSEN, SENIOR) Druk STOP om te stoppen.");
+            System.out.println("Welke leeftijdscategorieën zijn toegestaan in deze zone? (keuze tussen: KIND, VOLWASSEN, SENIOR) Druk STOP om te stoppen.): ");
             input = sc.nextLine();
 
             if(!input.equals("STOP")){
@@ -162,34 +178,52 @@ public class DierenParkApp implements Serializable {
 
     private void maakBezoeker(){
 
-        System.out.print("Voornaam:");
+    try{
+        System.out.print("Voornaam: ");
         String voornaamBezoeker = sc.nextLine();
-        System.out.print("Achternaam:");
+        System.out.print("Achternaam: ");
         String achternaamBezoeker = sc.nextLine();
-        System.out.print("Geboortedatum (Formaat: YYYY-MM-DD):");
+        System.out.print("Geboortedatum (Formaat: YYYY-MM-DD): ");
         LocalDate geboortedatumBezoeker = LocalDate.parse(sc.nextLine());
-        System.out.print("Straatnaam:");
+        System.out.print("Straatnaam: ");
         String straatNaamBezoeker = sc.nextLine();
-        System.out.print("Huisnummer:");
+        System.out.print("Huisnummer: ");
         int huisNummerBezoeker = Integer.parseInt(sc.nextLine());
-        System.out.println("Bus:");
+        System.out.print("Bus: ");
         int busBezoeker = Integer.parseInt(sc.nextLine());
-        System.out.println("Postcode:");
+        System.out.print("Postcode: " );
         int postCodeBezoeker = Integer.parseInt(sc.nextLine());
-        System.out.println("Woonplaat:");
+        System.out.print("Woonplaat: ");
         String woonPlaatsBezoeker = sc.nextLine();
-        System.out.println("Leeftijdscategorie (SENIOR, VOLWASSEN, KIND):");
+        System.out.print("Leeftijdscategorie (SENIOR, VOLWASSEN, KIND): ");
         Bezoeker.LeeftijdsCategorie leeftijdscategorie = Bezoeker.LeeftijdsCategorie.valueOf(sc.nextLine());
 
         bezoeker = new Bezoeker(voornaamBezoeker, achternaamBezoeker, geboortedatumBezoeker, new Adres(straatNaamBezoeker, huisNummerBezoeker, busBezoeker, postCodeBezoeker, woonPlaatsBezoeker), leeftijdscategorie );
         bezoekerLijst.add(bezoeker);
+    } catch (NumberFormatException e) {
+        System.err.println("Foutieve invoer: huisnummer, bus of postcode moet een getal zijn.");
+    } catch (DateTimeParseException e) {
+        System.err.println("Foutieve invoer: geboortedatum moet in formaat YYYY-MM-DD zijn.");
+    } catch (IllegalArgumentException e) {
+        System.err.println("Foutieve invoer: leeftijdscategorie ongeldig (SENIOR, VOLWASSEN, KIND).");
+    }
+
+
+
 
     }
 
     private void voegPersoneelAanActiviteit(){
         System.out.println("\nVoeg een personeel toe aan een activiteit. " +
-                "\n Aan welke activiteit wil je een personeel toevoegen? (Gebruik de nummer van de activiteit) " +
-                "\n" + activiteitLijst);
+                "\nAan welke activiteit wil je een personeel toevoegen? (Gebruik de nummer van de activiteit) " +
+                "\n");
+
+        for(Activiteit activiteit: activiteitLijst){
+            System.out.println(GEEL + activiteit.getActiviteitsTel() + RESET +
+                    "\nCategorie activiteit: " + activiteit.getCategorie() +
+                    "\nOmschrijving activiteit: " + activiteit.getOmschrijving() +
+                    "\nLijst medewerkers: " + activiteit.getLijstMederwerkers());
+        }
 
         int indexActiviteit = Integer.parseInt(sc.nextLine());
         Activiteit activiteitTeVeranderen = activiteitLijst.get(indexActiviteit);

@@ -17,6 +17,27 @@ public class Adres {
         this.woonPlaats = woonPlaats;
     }
 
+
+    public String getStraatNaam() {
+        return straatNaam;
+    }
+
+    public int getHuisNummer() {
+        return huisNummer;
+    }
+
+    public int getBus() {
+        return bus;
+    }
+
+    public int getPostCode() {
+        return postCode;
+    }
+
+    public String getWoonPlaats() {
+        return woonPlaats;
+    }
+
     public void setStraatNaam(String straatNaam) {
         this.straatNaam = straatNaam;
     }

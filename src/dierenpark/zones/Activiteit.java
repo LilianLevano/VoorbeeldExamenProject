@@ -22,6 +22,34 @@ public class Activiteit implements Serializable {
 
     }
 
+    public Personeelsleed getMederwerker() {
+        return mederwerker;
+    }
+
+    public void setMederwerker(Personeelsleed mederwerker) {
+        this.mederwerker = mederwerker;
+    }
+
+    public void setLijstMederwerkers(ArrayList<Personeelsleed> lijstMederwerkers) {
+        this.lijstMederwerkers = lijstMederwerkers;
+    }
+
+    public static int getActiviteitteller() {
+        return activiteitteller;
+    }
+
+    public static void setActiviteitteller(int activiteitteller) {
+        Activiteit.activiteitteller = activiteitteller;
+    }
+
+    public String getActiviteitsTel() {
+        return activiteitsTel;
+    }
+
+    public void setActiviteitsTel(String activiteitsTel) {
+        this.activiteitsTel = activiteitsTel;
+    }
+
     public String getCategorie() {
         return categorie;
     }

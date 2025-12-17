@@ -31,6 +31,30 @@ public class Bezoeker extends Persoon implements Serializable {
         bezoekerteller++;
     }
 
+    public double getToegangsPrijs() {
+        return toegangsPrijs;
+    }
+
+    public void setToegangsPrijs(double toegangsPrijs) {
+        this.toegangsPrijs = toegangsPrijs;
+    }
+
+    public static int getBezoekerteller() {
+        return bezoekerteller;
+    }
+
+    public static void setBezoekerteller(int bezoekerteller) {
+        Bezoeker.bezoekerteller = bezoekerteller;
+    }
+
+    public String getBezoekerTel() {
+        return bezoekerTel;
+    }
+
+    public void setBezoekerTel(String bezoekerTel) {
+        this.bezoekerTel = bezoekerTel;
+    }
+
     public LeeftijdsCategorie getLeeftijd() {
         return leeftijd;
     }

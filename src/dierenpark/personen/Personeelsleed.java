@@ -21,6 +21,23 @@ public class Personeelsleed extends Persoon implements Serializable {
         personeelsleedteller++;
     }
 
+
+    public static int getPersoneelsleedteller() {
+        return personeelsleedteller;
+    }
+
+    public static void setPersoneelsleedteller(int personeelsleedteller) {
+        Personeelsleed.personeelsleedteller = personeelsleedteller;
+    }
+
+    public String getPersoneelsleedTel() {
+        return personeelsleedTel;
+    }
+
+    public void setPersoneelsleedTel(String personeelsleedTel) {
+        this.personeelsleedTel = personeelsleedTel;
+    }
+
     public TypePersoneel getTypePersoneel() {
         return typePersoneel;
     }

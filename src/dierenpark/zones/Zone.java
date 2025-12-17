@@ -29,6 +29,78 @@ public class Zone implements Serializable {
         zoneteller++;
     }
 
+    public Bezoeker getBezoeker() {
+        return bezoeker;
+    }
+
+    public void setBezoeker(Bezoeker bezoeker) {
+        this.bezoeker = bezoeker;
+    }
+
+    public Activiteit getActiviteit() {
+        return activiteit;
+    }
+
+    public void setActiviteit(Activiteit activiteit) {
+        this.activiteit = activiteit;
+    }
+
+    public void setNaamZone(String naamZone) {
+        this.naamZone = naamZone;
+    }
+
+    public int getMaxCapaciteit() {
+        return maxCapaciteit;
+    }
+
+    public void setMaxCapaciteit(int maxCapaciteit) {
+        this.maxCapaciteit = maxCapaciteit;
+    }
+
+    public Bezoeker.LeeftijdsCategorie getLeeftijd() {
+        return leeftijd;
+    }
+
+    public void setLeeftijd(Bezoeker.LeeftijdsCategorie leeftijd) {
+        this.leeftijd = leeftijd;
+    }
+
+    public static int getZoneteller() {
+        return zoneteller;
+    }
+
+    public static void setZoneteller(int zoneteller) {
+        Zone.zoneteller = zoneteller;
+    }
+
+    public String getZoneTel() {
+        return zoneTel;
+    }
+
+    public void setZoneTel(String zoneTel) {
+        this.zoneTel = zoneTel;
+    }
+
+    public ArrayList<Activiteit> getLijstActiviteit() {
+        return lijstActiviteit;
+    }
+
+    public void setLijstActiviteit(ArrayList<Activiteit> lijstActiviteit) {
+        this.lijstActiviteit = lijstActiviteit;
+    }
+
+    public void setLijstBezoekers(ArrayList<Bezoeker> lijstBezoekers) {
+        this.lijstBezoekers = lijstBezoekers;
+    }
+
+    public ArrayList<Bezoeker.LeeftijdsCategorie> getToegestaanLeeftijd() {
+        return toegestaanLeeftijd;
+    }
+
+    public void setToegestaanLeeftijd(ArrayList<Bezoeker.LeeftijdsCategorie> toegestaanLeeftijd) {
+        this.toegestaanLeeftijd = toegestaanLeeftijd;
+    }
+
     public String getLijstBezoekers() {
         return ""+lijstBezoekers;
     }
