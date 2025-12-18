@@ -75,7 +75,6 @@ public class Activiteit implements Serializable {
             System.out.println("Deze mederwerker staat al in deze lijst.");
         }else{
             this.lijstMederwerkers.add(mederwerker);
-            System.out.println(mederwerker.getNaam() + " (mederwerker) werd succesvol toegevoegd aan " + this.categorie + ".");
         }
 
     }

@@ -65,12 +65,12 @@ public class Adres {
 
     @Override
     public String toString() {
-        return "Adres{" +
-                " straatNaam = " + this.straatNaam +
-                ", huisNummer = " + this.huisNummer +
-                ", bus = " + this.bus +
-                ", postCode = " + this.postCode +
-                ", woonPlaats = " + this.woonPlaats +
+        return "Adres van de persoon:" +
+                " Straatnaam = " + this.straatNaam +
+                ", Huisnummer = " + this.huisNummer +
+                ", Bus = " + this.bus +
+                ", Postcode = " + this.postCode +
+                ", Woonplaats = " + this.woonPlaats +
                 '}';
     }
 }

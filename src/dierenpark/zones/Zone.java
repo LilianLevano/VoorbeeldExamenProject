@@ -1,7 +1,7 @@
 package dierenpark.zones;
 
 import dierenpark.personen.Bezoeker;
-import dierenpark.personen.Personeelsleed;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -135,7 +135,7 @@ public class Zone implements Serializable {
                 System.out.println("Deze zone is compleet. Geen extra bezoekers kunnen toegevoegd worden.");
             }else{
                 lijstBezoekers.add(bezoeker);
-                System.out.println(bezoeker.getNaam() + " (bezoeker) werd succesvol toegevoegd aan deze zone.");
+
             }
         }else{
             System.out.println("Deze leeftijdscategorie is niet toegestaan in deze zone.");
